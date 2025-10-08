@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Undangan Pernikahan Antawi & Tuni</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      background: #fffaf7;
+      color: #333;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: linear-gradient(135deg, #f7c6c7, #fce4ec);
+      padding: 50px 20px;
+    }
+
+    header h1 {
+      font-size: 2.2em;
+      color: #7a1c1c;
+      margin: 0;
+    }
+
+    header p {
+      font-size: 1.1em;
+      color: #555;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 700px;
+      margin: auto;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    section.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .couple {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .couple img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #f7c6c7;
+    }
+
+    .date {
+      background: #f7c6c7;
+      color: #7a1c1c;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 30px auto;
+      max-width: 500px;
+    }
+
+    .button {
+      display: inline-block;
+      margin: 15px 10px;
+      padding: 12px 25px;
+      background: #7a1c1c;
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .button:hover {
+      background: #5c1111;
+    }
+
+    footer {
+      padding: 20px;
+      background: #fce4ec;
+      color: #7a1c1c;
+    }
+
+    iframe {
+      border: none;
+      width: 100%;
+      height: 300px;
+      border-radius: 10px;
+    }
+
+    .message-box {
+      background: #fce4ec;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    input, textarea {
+      width: 90%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    @media (max-width: 600px) {
+      .couple {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Undangan Pernikahan</h1>
+    <p>Antawi & Tuni</p>
+  </header>
+
+  <!-- Slide 1: Beranda -->
+  <section id="slide1" class="active">
+    <p>Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud menyelenggarakan pernikahan kami:</p>
+
+    <div class="couple">
+      <div>
+        <img src="Antawi.jpeg" alt="Antawi">
+        <p><strong>Antawi</strong></p>
+      </div>
+      <p style="font-size:1.5em; color:#7a1c1c;">&</p>
+      <div>
+        <img src="Tuni.jpeg" alt="Tuni">
+        <p><strong>Tuni</strong></p>
+      </div>
+    </div>
+
+    <div class="date">
+      <h2>Minggu, 16 November 2025</h2>
+      <p>Pukul 10.00 WIB - Selesai</p>
+      <p>Bertempat di Kp.baru desa kampung baru kecamatan pamarayan</p>
+    </div>
+
+    <p>Merupakan kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.</p>
+
+    <div>
+      <button class="button" onclick="nextSlide(2)">Selanjutnya</button>
+    </div>
+  </section>
+
+  <!-- Slide 2: Lokasi -->
+  <section id="slide2">
+    <h2>Lokasi Acara</h2>
+    <p>Kp.baru desa kampung baru kecamatan pamarayan</p>
+    <iframe src="google.maps.html"></iframe>
+
+    <div>
+      <button class="button" onclick="prevSlide(1)">Kembali</button>
+      <button class="button" onclick="nextSlide(3)">Selanjutnya</button>
+    </div>
+  </section>
+
+  <!-- Slide 3: Ucapan -->
+  <section id="slide3">
+    <h2>Kirim Ucapan</h2>
+    <div class="message-box">
+      <form onsubmit="showThanks(event)">
+        <input type="text" placeholder="Nama Anda" required><br>
+        <textarea placeholder="Tuliskan ucapan terbaik Anda..." rows="4" required></textarea><br>
+        <button type="submit" class="button">Kirim</button>
+      </form>
+      <p id="thankyou" style="color:#7a1c1c; display:none; margin-top:10px;">Terima kasih atas doa dan ucapannya!</p>
+    </div>
+
+    <div>
+      <button class="button" onclick="prevSlide(2)">Kembali</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>Dengan penuh cinta,</p>
+    <p><strong>Antawi & Tuni</strong></p>
+  </footer>
+
+  <script>
+    function nextSlide(n) {
+      document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+      document.getElementById("slide" + n).classList.add("active");
+    }
+
+    function prevSlide(n) {
+      document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+      document.getElementById("slide" + n).classList.add("active");
+    }
+
+    function showThanks(event) {
+      event.preventDefault();
+      document.getElementById("thankyou").style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
